@@ -9,10 +9,19 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <script src="js/jquery.min.js"></script>
-        <script src="js/exitPlugin.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/exitPlugin.js"></script>
     </head>
     <body>
-        <div id="showpopup" style="font-size: 100px; display: none;">I'M QUITTING</div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                 $('#showpopup').exit_intent("open");
+            });
+        </script>
+
+        <div id="showpopup" style="font-size: 100px; ">I'M QUITTING
+            <input type="button" id="closeExitIntentOverlay" value="close overlay" script="">
+        </div>
     </body>
 </html>
