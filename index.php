@@ -16,12 +16,26 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function() {
-                 $('#showpopup').exit_intent("open");
+                 $('#popUpOverlay').exit_intent("init",{
+                    'location'         : 'center',
+                    'animation-in'     : 'show',
+                    'animation-out'    : 'hide',
+                    'speed'            : 'normal',
+                    'overlayColor'     : '#000000',
+                    'overlayOpacity'   : '0.5'
+                 });
+
+                  $('#popUpOverlay').exit_intent("show");
+                  $('#popUpOverlay').exit_intent("hide");
             });
         </script>
 
-        <div id="showpopup" style="font-size: 100px; ">I'M QUITTING
+        <div id="popUpOverlay" style="font-size: 100px;">
+           <div id="overlay"></div>
+            <div class="overlayContent" style="color:white;">
+            I'M QUITTING
             <input type="button" id="closeExitIntentOverlay" value="close overlay" script="">
+            </div>
         </div>
     </body>
 </html>
