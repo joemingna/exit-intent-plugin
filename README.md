@@ -20,7 +20,35 @@ Html integration
 
 The id "popUpOverlay", "overlay", "closeExitIntentOverlay" and the class "overlayContent" are 4 id's that the plugin uses to run.
 
-1-"popUpOverlay" is the id of your main container of your popup
-2-"overlay" is the id of your background that will hide the whole page. (You can change the color and apacity with the parameters listed bellow)
-3-"closeExitIntentOverlay" is the id of your button to close the popup. you can place it anywhere inside the div "overlayContent" as long as its there.
-4-"overlayContent" is the class of the div witch you will design to create your own popup.
+*"popUpOverlay" is the id of your main container of your popup
+*"overlay" is the id of your background that will hide the whole page. (You can change the color and apacity with the parameters listed bellow)
+*"closeExitIntentOverlay" is the id of your button to close the popup. you can place it anywhere inside the div "overlayContent" as long as its there.
+*"overlayContent" is the class of the div witch you will design to create your own popup.
+
+Method and parameters
+---------------------
+
+Call the plugin to initialise it with the exit-intent functions.
+
+When you call the plugin for the first time, you can modify the right parameters to customise your popup
+
+$('#popUpOverlay').exit_intent({
+    'location'         : 'center',
+    'animation-in'     : 'fadeIn',
+    'animation-out'    : 'fadeOut',
+    'speed'            : 'fast',
+    'overlayColor'     : '#378ed5',
+    'overlayOpacity'   : '0.5',
+// those last two are the width and height of the class "overlayContent"
+    'width'            : '680',
+    'height'           : '400'
+});
+
+
+1.'location' you can position your content by entering _*'center','top','right','bottom' or 'left'*_
+
+
+
+
+
+
