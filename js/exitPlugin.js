@@ -36,23 +36,23 @@
                  changePosision();
                  colorOverlay();
 
+                if($.cookie("exit-intent-cookie")=='true'){
+                    $(document).mousemove(function(e) {
+                        mousex = e.pageX;
+                        mousey = e.pageY;
+                        if (lastmousex > -1)
+                            mousetravel = Math.max( Math.abs(mousex-lastmousex), Math.abs(mousey-lastmousey) );
 
-                $(document).mousemove(function(e) {
-                    mousex = e.pageX;
-                    mousey = e.pageY;
-                    if (lastmousex > -1)
-                        mousetravel = Math.max( Math.abs(mousex-lastmousex), Math.abs(mousey-lastmousey) );
+                        lastmousex = mousex;
+                        lastmousey = mousey;
+                    });
 
-                    lastmousex = mousex;
-                    lastmousey = mousey;
-                });
-
-                $(document).on("mouseout", function(){
-                   if(mousey < 50 && mousex<400 || mousey <50 && mousex >pageWidth-400) {
-                        showOverlay(overlayId);
-                   }
-                });
-
+                    $(document).on("mouseout", function(){
+                       if(mousey < 50 && mousex<400 || mousey <50 && mousex >pageWidth-400) {
+                            showOverlay(overlayId);
+                       }
+                    });
+                }
 
                 $("#closeExitIntentOverlay").click( function(){
                         hideOverlay(overlayId);
