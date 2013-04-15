@@ -14,21 +14,7 @@
         <script type="text/javascript" src="js/exitPlugin.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                 $('#popUpOverlay').exit_intent("init",{
-                    'location'         : 'center',
-                    'animation-in'     : 'show',
-                    'animation-out'    : 'hide',
-                    'speed'            : 'normal',
-                    'overlayColor'     : '#000000',
-                    'overlayOpacity'   : '0.5'
-                 });
-
-                  $('#popUpOverlay').exit_intent("show");
-                  $('#popUpOverlay').exit_intent("hide");
-            });
-        </script>
+        
 
         <div id="popUpOverlay" style="font-size: 100px;">
            <div id="overlay"></div>
@@ -37,5 +23,22 @@
             <input type="button" id="closeExitIntentOverlay" value="close overlay" script="">
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                 $('#popUpOverlay').exit_intent('init',{
+                    'location'         : 'left',
+                    'animation-in'     : 'show',
+                    'animation-out'    : 'hide',
+                    'speed'            : 'normal',
+                    'overlayColor'     : '#ff3399',
+                    'overlayOpacity'   : '0.5',
+                    'width'            : '755',
+                    'height'           : '115'
+                 });
+
+            });
+        </script>
+
     </body>
 </html>

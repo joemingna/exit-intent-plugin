@@ -1,0 +1,2 @@
+Exit-intent plugin
+==================
