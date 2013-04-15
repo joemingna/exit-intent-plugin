@@ -16,25 +16,31 @@
     <body>
         
 
-        <div id="popUpOverlay" style="font-size: 100px;">
+        <div id="popUpOverlay">
            <div id="overlay"></div>
-            <div class="overlayContent" style="color:white;">
-            I'M QUITTING
-            <input type="button" id="closeExitIntentOverlay" value="close overlay" script="">
+            <div class="overlayContent" style="width:680px;height:400px;color:white; background-color:#3990d7;border:5px solid white">
+                <div style="margin:0 auto;width:500px;height:250px;background-color:white;border-radius:5px;margin-top: 75px;overflow:hidden;">
+                    <input type="button" id="closeExitIntentOverlay" value="X" script="" style="float:right;">
+                    <h2 style="clear:both;color:black;margin:30px 0 0 20px">Subscribe to our newsletter</h2>
+                    <p style="clear:both;color:black;margin:55px 0 0 20px;width:350px;">Enter your Email bellow to receive all news from our awesome web site.</p>
+                    <input type='email' placeholder="email@hotmail.com" style="width:300px;margin:20px 0 0 20px">
+                    <input type='submit' style="height:50px;">
+                </div>
+            
             </div>
         </div>
 
         <script type="text/javascript">
             $(document).ready(function() {
-                 $('#popUpOverlay').exit_intent('init',{
-                    'location'         : 'left',
-                    'animation-in'     : 'show',
-                    'animation-out'    : 'hide',
-                    'speed'            : 'normal',
-                    'overlayColor'     : '#ff3399',
+                 $('#popUpOverlay').exit_intent({
+                    'location'         : 'center',
+                    'animation-in'     : 'fadeIn',
+                    'animation-out'    : 'fadeOut',
+                    'speed'            : 'fast',
+                    'overlayColor'     : '#378ed5',
                     'overlayOpacity'   : '0.5',
-                    'width'            : '755',
-                    'height'           : '115'
+                    'width'            : '680',
+                    'height'           : '400'
                  });
 
             });

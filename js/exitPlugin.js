@@ -6,7 +6,8 @@
         var methods = {
             init : function(option) {
                 //alert(option['location'])
-                 globalSettings = $.extend({}, {
+                console.log(option)
+                globalSettings = $.extend({}, {
                  'location'         : 'center',
                  'animation-in'     : 'show',
                  'animation-out'    : 'hide',
@@ -122,7 +123,7 @@
             var imageWidth = globalSettings['width'];
             pageWidth = $(window).width();
             pageHeight = $(window).height();
-            
+
             if(globalSettings["location"]=="center")  {
                 $(".overlayContent").css({
                     "position" : "absolute",
@@ -183,7 +184,7 @@
         if ( methods[method] ) {
              return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof method === 'object' || ! method ) {
-             return methods.init.apply( this, method );
+             return methods.init.apply( this, [method] );
         } else {
              $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
         }
