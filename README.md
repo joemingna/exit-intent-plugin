@@ -40,6 +40,8 @@ When you call the plugin for the first time, you can modify the right parameters
 	    'speed'            : 'fast',
 	    'overlayColor'     : '#378ed5',
 	    'overlayOpacity'   : '0.5',
+	    'nbTimepopupCanApear':1,
+	    'cookieLife'       :30,
 	// those last two are the width and height of the class "overlayContent"
 	    'width'            : '680',
 	    'height'           : '400'
@@ -52,20 +54,23 @@ When you call the plugin for the first time, you can modify the right parameters
 4. 'speed' : its the speed of your animation, chose either default speed setting, 'fast', 'normal' or 'slow' or chose a number in millisecond.(1000 for 1 second).
 5. 'overlayColor' : chose the collor of your overlay in hexadicimal (#000000).
 6. 'overlayOpacity' : chose between 0 to 1 where 0 is invisible (ex : 0.5).
-7. 'width' : Enter the exact width of your div "overlayContent" for a good positionning.
-8. 'height'  : Enter the exact height of your div "overlayContent" for a good positionning.
+7. 'nbTimepopupCanApear' : Set the number of time your popup will appear.
+8. 'cookieLife' :The life spawn of your cookie. by default, its 30 days. The user wont see your popup after it reaches the limit of time it can appear with the 'nbTimepopupCanApear' parameter. Until the cookie is destroyed after the day limit you setted (numbers = number of day)
+9. 'width' : Enter the exact width of your div "overlayContent" for a good positionning.
+10. 'height'  : Enter the exact height of your div "overlayContent" for a good positionning.
 
 Methods
 -------
 
 * init : call this method to initialise the plugin. $('#popUpOverlay').exit_intent('init',{rest of you settings}). By default it will do it.
-
 * show : will make the popup appear when you desire. It will accept two more parameters. One for the desired animation and the second for the speed. $('#popUpOverlay').exit_intent('show','animation parameter','speed parameter').
 * hide :will make the popup dissapear when you desire. It will accept two more parameters. One for the desired animation and the second for the speed. $('#popUpOverlay').exit_intent('hide','animation parameter','speed parameter').
 * setPosition : change the position of you div  "overlayContent". It accept 'center', 'top', 'right', 'bottom', 'left'. $('#popUpOverlay').exit_intent('setPosition','desired position')
 * colorTheOverlay : Change the color of the overlay anytime you want by giving the color and opacity has parameter. $('#popUpOverlay').exit_intent('colorTheOverlay','desired color','disired opacity')
-* checkCookies : Ask the user if he want to ennable the exit-intent function. If not, it will dissable the exit-intent functions but, the other method will still work.
+* checkCookies : check if the cookie is created. If it is created, it will return the number of time the popup has appeared to the function of the exit-intent.
+* deleteCookie : this method permits you to reset the cokkie. $('#popUpOverlay').exit_intent('deleteCookies')
 
 
+>** Be sure to not make mistakes in the parameters if you want the plugin to work correctly.
 
 

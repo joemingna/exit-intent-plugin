@@ -39,9 +39,12 @@
                     'speed'            : 'fast',
                     'overlayColor'     : '#378ed5',
                     'overlayOpacity'   : '0.5',
+                    'nbTimepopupCanApear':1,
+                    'cookieLife'       :30,
                     'width'            : '680',
                     'height'           : '400'
                  });
+
 
             });
         </script>

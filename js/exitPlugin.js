@@ -2,11 +2,13 @@
 (function($){
     //$.fn.extend({ 
         var globalSettings;
+        var nbAppeared=0;
+        var maxAppearence;
+
 
         var methods = {
             init : function(option) {
-                //alert(option['location'])
-                console.log(option)
+                console.log(option);
                 globalSettings = $.extend({}, {
                  'location'         : 'center',
                  'animation-in'     : 'show',
@@ -14,12 +16,13 @@
                  'speed'            : 'normal',
                  'overlayColor'     : '#ff3399',
                  'overlayOpacity'   : '0.5',
+                 'nbTimepopupCanApear':1,
+                 'cookieLife'       :30,
                  'width'            : '800',
                  'height'           : '200'
                  }, option);
 
-                //alert(globalSettings['width'])
-
+                 var justAppeared=false;
                  var lastmousex=-1;
                  var lastmousey=-1;
                  var lastmousetime;
@@ -27,16 +30,16 @@
                  var pageWidth = $(window).width();
                  var pageheight = $(window).height();
                  var mousey, mousex;
+                 maxAppearence=parseInt(globalSettings['nbTimepopupCanApear'],10);
 
                  var overlayId=this;
                 $(overlayId).hide();
 
-                cookieFunction();
-
                  changePosision();
                  colorOverlay();
+                 createCookie();
 
-                if($.cookie("exit-intent-cookie")=='true'){
+                if(nbAppeared<=maxAppearence){
                     $(document).mousemove(function(e) {
                         mousex = e.pageX;
                         mousey = e.pageY;
@@ -49,7 +52,12 @@
 
                     $(document).on("mouseout", function(){
                        if(mousey < 50 && mousex<400 || mousey <50 && mousex >pageWidth-400) {
-                            showOverlay(overlayId);
+                            if(justAppeared===false){
+                                updateCookie();
+                                justAppeared=true;
+                               // setTimeout(function(){justAppeared=false;}, 200);
+                                showOverlay(overlayId);
+                            }
                        }
                     });
                 }
@@ -81,28 +89,41 @@
                 hideOverlay(overlayId);
              },
             setPosition : function(newPosition) {
-                globalSettings['location']=newPosition;
+                if(newPosition){globalSettings['location']=newPosition;}
                 changePosision();
              },
             colorTheOverlay : function(newColor,newAlpha) {
-                globalSettings['overlayColor']=newColor;
-                globalSettings['overlayOpacity']=newAlpha;
+                if(newColor){globalSettings['overlayColor']=newColor;}
+                if(newAlpha){globalSettings['overlayOpacity']=newAlpha;}
                 colorOverlay();
              },
             checkCookies : function( ) {
-                cookieFunction();
+                updateCookie();
+             },
+             deleteCookie : function() {
+                deleteCookieFunction();
              }
         };
 
 
         function showOverlay(overlayId){
-          if(globalSettings["animation-in"]=='show'){$(overlayId).show(globalSettings["speed"]);}
-          else if(globalSettings["animation-in"]=='fadeIn'){$(overlayId).fadeIn(globalSettings["speed"]);}
+            if(isNaN(parseInt(globalSettings["speed"],10))){
+              if(globalSettings["animation-in"]=='show'){$(overlayId).show(globalSettings["speed"]);}
+              else if(globalSettings["animation-in"]=='fadeIn'){$(overlayId).fadeIn(globalSettings["speed"]);}
+            }else{
+                if(globalSettings["animation-in"]=='show'){$(overlayId).show(parseInt(globalSettings["speed"],10));}
+              else if(globalSettings["animation-in"]=='fadeIn'){$(overlayId).fadeIn(parseInt(globalSettings["speed"],10));}
+            }
         }
 
         function hideOverlay(overlayId){
-          if(globalSettings["animation-out"]=='hide'){$(overlayId).hide(globalSettings["speed"]);}
-          else if(globalSettings["animation-out"]=='fadeOut'){$(overlayId).fadeOut(globalSettings["speed"]);}
+            if(isNaN(parseInt(globalSettings["speed"],10))){
+              if(globalSettings["animation-out"]=='hide'){$(overlayId).hide(globalSettings["speed"]);}
+              else if(globalSettings["animation-out"]=='fadeOut'){$(overlayId).fadeOut(globalSettings["speed"]);}
+            }else{
+                if(globalSettings["animation-out"]=='hide'){$(overlayId).hide(parseInt(globalSettings["speed"],10));}
+              else if(globalSettings["animation-out"]=='fadeOut'){$(overlayId).fadeOut(parseInt(globalSettings["speed"],10));}
+            }
         }
 
         function colorOverlay(){
@@ -162,21 +183,38 @@
 
         }
 
-        function cookieFunction(){
+        function updateCookie(){
             $.cookie.raw = true;
-            if(!$.cookie("exit-intent-cookie")){
-                var comfirmExitIntent=confirm("Do you want to enable exit-intent ?");
-                if (comfirmExitIntent===true){
-                    $.cookie('exit-intent-cookie', 'true', { expires: 30, path: '/' });
-                }
-                else{
-                     $.cookie('exit-intent-cookie', 'false', { expires: 30, path: '/' });
-                 }
-             }
+            if(!$.cookie('exit-intent-cookie')){
+                 createCookie();
+            }else{
+                nbAppeared= parseInt($.cookie('exit-intent-cookie'),10);
+                nbAppeared+=1;
+                deleteCookieFunction();
+                $.cookie('exit-intent-cookie', nbAppeared, { expires: globalSettings['cookieLife'], path: '/' });
+            }
         }
 
+        function createCookie(){
+            $.cookie.raw = true;
+            if(!$.cookie('exit-intent-cookie')){
+                 $.cookie('exit-intent-cookie', 1, { expires: globalSettings['cookieLife'], path: '/' });
+                 nbAppeared=1;
+            }else{
+                nbAppeared= parseInt($.cookie('exit-intent-cookie'),10);
+                return;
+            }
+        }
 
-
+        function deleteCookieFunction(){
+            if($.cookie('exit-intent-cookie')){
+                $.cookie("exit-intent-cookie", null);
+                $.cookie('exit-intent-cookie', 1, { expires: globalSettings['cookieLife'], path: '/' });
+                nbAppeared=1;
+            }else{
+                return;
+            }
+        }
 
 
      $.fn.exit_intent = function( method ) {
