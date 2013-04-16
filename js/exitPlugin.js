@@ -100,8 +100,9 @@
             checkCookies : function( ) {
                 updateCookie();
              },
-             deleteCookie : function() {
+             resetCookie : function() {
                 deleteCookieFunction();
+                createCookie();
              }
         };
 
@@ -188,7 +189,6 @@
             if(!$.cookie('exit-intent-cookie')){
                  createCookie();
             }else{
-                nbAppeared= parseInt($.cookie('exit-intent-cookie'),10);
                 nbAppeared+=1;
                 deleteCookieFunction();
                 $.cookie('exit-intent-cookie', nbAppeared, { expires: globalSettings['cookieLife'], path: '/' });
@@ -209,8 +209,6 @@
         function deleteCookieFunction(){
             if($.cookie('exit-intent-cookie')){
                 $.cookie("exit-intent-cookie", null);
-                $.cookie('exit-intent-cookie', 1, { expires: globalSettings['cookieLife'], path: '/' });
-                nbAppeared=1;
             }else{
                 return;
             }

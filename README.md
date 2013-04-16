@@ -68,7 +68,7 @@ Methods
 * setPosition : change the position of you div  "overlayContent". It accept 'center', 'top', 'right', 'bottom', 'left'. $('#popUpOverlay').exit_intent('setPosition','desired position')
 * colorTheOverlay : Change the color of the overlay anytime you want by giving the color and opacity has parameter. $('#popUpOverlay').exit_intent('colorTheOverlay','desired color','disired opacity')
 * checkCookies : check if the cookie is created. If it is created, it will return the number of time the popup has appeared to the function of the exit-intent.
-* deleteCookie : this method permits you to reset the cokkie. $('#popUpOverlay').exit_intent('deleteCookies')
+* resetCookie : this method permits you to reset the cokkie. So the next time the user goes on your site, he will see your popup. $('#popUpOverlay').exit_intent('resetCookie')
 
 
 >** Be sure to not make mistakes in the parameters if you want the plugin to work correctly.
