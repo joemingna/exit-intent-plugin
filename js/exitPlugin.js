@@ -1,4 +1,4 @@
-
+ 
 (function($){
     //$.fn.extend({ 
         var globalSettings;
@@ -42,7 +42,7 @@
                  colorOverlay();
                  createCookie();
 
-                if(nbAppeared<=maxAppearence){
+               // if(nbAppeared<=maxAppearence){
 
                     $(window).scroll(function(){
                         yOffset=$(window).scrollTop();
@@ -59,17 +59,15 @@
                     });
 
                     $(document).on("mouseout", function(){
-                       if(mousey < yOffset+50 && mousex<400 || mousey <yOffset+50 && mousex >pageWidth-400) {
+                       if(mousey < yOffset+25 && mousex<400 || mousey <yOffset+25 && mousex >pageWidth-400) {
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
-                               // java delay   setTimeout(function(){justAppeared=false;}, 200);
-                               // jquery delay   $('#popUpOverlay').delay(3000).hide('fast');
                                 showOverlay(overlayId);
                             }
                        }
                     });
-                }
+                //}
 
                 $("#closeExitIntentOverlay").click( function(){
                         hideOverlay(overlayId);
