@@ -23,7 +23,7 @@ The id "popUpOverlay", "overlay", "closeExitIntentOverlay" and the class "overla
 
 * "popUpOverlay" is the id of your main container of your popup
 * "overlay" is the id of your background that will hide the whole page. (You can change the color and apacity with the parameters listed bellow)
-* "closeExitIntentOverlay" is the id of your button to close the popup. you can place it anywhere inside the div "overlayContent" as long as its there.
+* "closeExitIntentOverlay" is the id of your button to close the popup. you can place it anywhere inside the div "overlayContent" to close the popup automaticaly or call the hide method when you want to close it later.
 * "overlayContent" is the class of the div witch you will design to create your own popup.
 
 Parameters
