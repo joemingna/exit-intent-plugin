@@ -7,6 +7,7 @@
 
 
         var methods = {
+            
             init : function(option) {
                 console.log(option);
                 globalSettings = $.extend({}, {
@@ -29,6 +30,8 @@
                  var mousetravel = 0;
                  var pageWidth = $(window).width();
                  var pageheight = $(window).height();
+                 var yOffset= $(window).scrollTop();
+
                  var mousey, mousex;
                  maxAppearence=parseInt(globalSettings['nbTimepopupCanApear'],10);
 
@@ -39,7 +42,12 @@
                  colorOverlay();
                  createCookie();
 
-                if(nbAppeared<=maxAppearence){
+               // if(nbAppeared<=maxAppearence){
+
+                    $(window).scroll(function(){
+                        yOffset=$(window).scrollTop();
+                    });
+
                     $(document).mousemove(function(e) {
                         mousex = e.pageX;
                         mousey = e.pageY;
@@ -51,7 +59,7 @@
                     });
 
                     $(document).on("mouseout", function(){
-                       if(mousey < 50 && mousex<400 || mousey <50 && mousex >pageWidth-400) {
+                       if(mousey < yOffset+50 && mousex<400 || mousey <yOffset+50 && mousex >pageWidth-400) {
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
@@ -60,7 +68,7 @@
                             }
                        }
                     });
-                }
+                //}
 
                 $("#closeExitIntentOverlay").click( function(){
                         hideOverlay(overlayId);
@@ -128,13 +136,14 @@
         }
 
         function colorOverlay(){
+            $('.overlayContent').css('position','fixed');
             $("#overlay").css({
-                    "position" : "absolute",
+                    "position" : "fixed",
                     "left" : 0,
                     "top" : 0
                 });
-            $("#overlay").css('width', pageWidth);
-            $("#overlay").css('height', pageHeight);
+            $("#overlay").css('width', '100%');
+            $("#overlay").css('height', '100%');
             $("#overlay").css('background-color', globalSettings["overlayColor"]);
             $("#overlay").css('opacity', globalSettings["overlayOpacity"]);
         }
