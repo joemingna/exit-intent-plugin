@@ -42,7 +42,7 @@
                  colorOverlay();
                  createCookie();
 
-               // if(nbAppeared<=maxAppearence){
+                if(nbAppeared<=maxAppearence){
 
                     $(window).scroll(function(){
                         yOffset=$(window).scrollTop();
@@ -63,12 +63,13 @@
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
-                               // setTimeout(function(){justAppeared=false;}, 200);
+                               // java delay   setTimeout(function(){justAppeared=false;}, 200);
+                               // jquery delay   $('#popUpOverlay').delay(3000).hide('fast');
                                 showOverlay(overlayId);
                             }
                        }
                     });
-                //}
+                }
 
                 $("#closeExitIntentOverlay").click( function(){
                         hideOverlay(overlayId);
