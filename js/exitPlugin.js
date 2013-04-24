@@ -1,4 +1,4 @@
- 
+
 (function($){
     //$.fn.extend({ 
         var globalSettings;
@@ -59,7 +59,7 @@
                     });
 
                     $(document).on("mouseout", function(){
-                       if(mousey < yOffset+25 && mousex<400 || mousey <yOffset+25 && mousex >pageWidth-400) {
+                       if(mousey < yOffset+25 && mousex<pageWidth/3 || mousey <yOffset+25 && mousex >pageWidth-(pageWidth/3)) {
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
