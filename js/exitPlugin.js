@@ -20,7 +20,8 @@
                  'nbTimepopupCanApear':1,
                  'cookieLife'       :30,
                  'width'            : '800',
-                 'height'           : '200'
+                 'height'           : '200',
+                 'exitWindow'      :'medium'
                  }, option);
 
                  var justAppeared=false;
@@ -42,7 +43,11 @@
                  colorOverlay();
                  createCookie();
 
-               // if(nbAppeared<=maxAppearence){
+                 var exitWindow=resizeExitWindow();
+
+
+
+               if(nbAppeared<=maxAppearence){
 
                     $(window).scroll(function(){
                         yOffset=$(window).scrollTop();
@@ -59,7 +64,7 @@
                     });
 
                     $(document).on("mouseout", function(){
-                       if(mousey < yOffset+25 && mousex<pageWidth/3 || mousey <yOffset+25 && mousex >pageWidth-(pageWidth/3)) {
+                       if(mousey < yOffset+25 && mousex<exitWindow || mousey <yOffset+25 && mousex >pageWidth-exitWindow) {
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
@@ -67,18 +72,22 @@
                             }
                        }
                     });
-                //}
+                
+                    $("#closeExitIntentOverlay").click( function(){
+                            hideOverlay(overlayId);
+                    });
 
-                $("#closeExitIntentOverlay").click( function(){
-                        hideOverlay(overlayId);
-                });
+                    // screen resising-----------------------
 
-                // screen resising-----------------------
+                    $(window).bind("resize", function(){
+                        changePosision();
+                        colorOverlay();
+                        resizeExitWindow();
+                    });
 
-                $(window).bind("resize", function(){
-                    changePosision();
-                    colorOverlay();
-                });
+                }
+
+                
 
 
             },
@@ -110,6 +119,11 @@
              resetCookie : function() {
                 deleteCookieFunction();
                 createCookie();
+             },
+             screenResize : function() {
+                changePosision();
+                colorOverlay();
+                resizeExitWindow();
              }
         };
 
@@ -220,6 +234,15 @@
             }else{
                 return;
             }
+        }
+
+        function resizeExitWindow(){
+            var tempNumber;
+            if(globalSettings['exitWindow']=='tiny'){tempNumber=parseInt(pageWidth/12,10);}
+            else if(globalSettings['exitWindow']=='small'){tempNumber=parseInt(pageWidth/6,10);}
+            else if(globalSettings['exitWindow']=='medium'){tempNumber=parseInt(pageWidth/3,10);}
+            else if (globalSettings['exitWindow']=='large'){tempNumber=parseInt(pageWidth/2,10);}
+            return tempNumber;
         }
 
 

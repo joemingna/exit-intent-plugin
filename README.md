@@ -44,7 +44,8 @@ When you call the plugin for the first time, you can modify the right parameters
 	    'cookieLife'       :30,
 	// those last two are the width and height of the class "overlayContent"
 	    'width'            : '680',
-	    'height'           : '400'
+	    'height'           : '400',
+	    'exitWindow'	   :'tiny'
 	});
 
 
@@ -58,6 +59,7 @@ When you call the plugin for the first time, you can modify the right parameters
 8. 'cookieLife' :The life spawn of your cookie. by default, its 30 days. The user wont see your popup after it reaches the limit of time it can appear with the 'nbTimepopupCanApear' parameter. Until the cookie is destroyed after the day limit you setted (numbers = number of day)
 9. 'width' : Enter the exact width of your div "overlayContent" for a good positionning.
 10. 'height'  : Enter the exact height of your div "overlayContent" for a good positionning.
+11. 'exitWindow' : Define your exit window of your browser by entering _**'tiny','small','medium','large'**_. By default its medium so about 1/3 of the screen width on both sides.
 
 Methods
 -------
@@ -69,7 +71,7 @@ Methods
 * colorTheOverlay : Change the color of the overlay anytime you want by giving the color and opacity has parameter. $('#popUpOverlay').exit_intent('colorTheOverlay','desired color','disired opacity')
 * checkCookies : check if the cookie is created. If it is created, it will return the number of time the popup has appeared to the function of the exit-intent.
 * resetCookie : this method permits you to reset the cokkie. So the next time the user goes on your site, he will see your popup. $('#popUpOverlay').exit_intent('resetCookie')
-
+* screenResize : call this if you want to update the variable of the browser screen size if the popup was disable by the cookie but you still want to update your popup in case the user has resized is browser and then make it appear.
 
 >** Be sure to not make mistakes in the parameters if you want the plugin to work correctly.
 
