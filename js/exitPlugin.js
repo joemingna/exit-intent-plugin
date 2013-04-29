@@ -1,4 +1,3 @@
-
 (function($){
     //$.fn.extend({ 
         var globalSettings;
@@ -9,7 +8,6 @@
         var methods = {
             
             init : function(option) {
-                console.log(option);
                 globalSettings = $.extend({}, {
                  'location'         : 'center',
                  'animation-in'     : 'show',
@@ -49,13 +47,12 @@
 
                if(nbAppeared<=maxAppearence){
 
-                    $(window).scroll(function(){
-                        yOffset=$(window).scrollTop();
-                    });
+
 
                     $(document).mousemove(function(e) {
                         mousex = e.pageX;
                         mousey = e.pageY;
+
                         if (lastmousex > -1)
                             mousetravel = Math.max( Math.abs(mousex-lastmousex), Math.abs(mousey-lastmousey) );
 
@@ -63,8 +60,10 @@
                         lastmousey = mousey;
                     });
 
-                    $(document).on("mouseout", function(){
-                       if(mousey < yOffset+25 && mousex<exitWindow || mousey <yOffset+25 && mousex >pageWidth-exitWindow) {
+                    $(document).on("mouseleave", function(){
+                        var yOffset = $(window).scrollTop();
+                        
+                       if((mousey < yOffset+20 && mousetravel > 9  && mousex<exitWindow) || (mousey <yOffset+20 && mousetravel > 9  && mousex >pageWidth-exitWindow)) {
                             if(justAppeared===false){
                                 updateCookie();
                                 justAppeared=true;
@@ -73,8 +72,9 @@
                        }
                     });
                 
-                    $("#closeExitIntentOverlay").click( function(){
-                            hideOverlay(overlayId);
+                    $("#closeExitIntentOverlay").on("click", function(){
+                            $(overlayId).hide();
+                            return false;
                     });
 
                     // screen resising-----------------------
