@@ -1,3 +1,4 @@
+
 (function($){
     //$.fn.extend({ 
         var globalSettings;
@@ -73,7 +74,7 @@
                     });
                 
                     $("#closeExitIntentOverlay").on("click", function(){
-                            $(overlayId).hide();
+                            hideOverlay(overlayId);
                             return false;
                     });
 
@@ -146,6 +147,8 @@
                 if(globalSettings["animation-out"]=='hide'){$(overlayId).hide(parseInt(globalSettings["speed"],10));}
               else if(globalSettings["animation-out"]=='fadeOut'){$(overlayId).fadeOut(parseInt(globalSettings["speed"],10));}
             }
+            
+            $(overlayId).animate({opacity:0});
         }
 
         function colorOverlay(){
@@ -157,8 +160,10 @@
                 });
             $("#overlay").css('width', '100%');
             $("#overlay").css('height', '100%');
-            $("#overlay").css('background-color', globalSettings["overlayColor"]);
-            $("#overlay").css('opacity', globalSettings["overlayOpacity"]);
+            if(globalSettings["overlayColor"]!='none'){
+                $("#overlay").css('background', globalSettings["overlayColor"]);
+                $("#overlay").css('opacity', globalSettings["overlayOpacity"]);
+            }
         }
 
 
